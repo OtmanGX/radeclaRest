@@ -1,0 +1,9 @@
+Django~=2.2
+djangorestframework~=3.11.0
+djangorestframework-simplejwt
+sqlparse~=0.2.4
+django-cors-headers
+django-filter
+djongo
+python-dateutil
+pyserial~=3.4
