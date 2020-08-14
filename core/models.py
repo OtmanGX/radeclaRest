@@ -3,7 +3,7 @@ import time
 from django.db import models
 from django.dispatch import receiver
 from django.utils import timezone
-
+import threading
 from core.task import SerialThread
 
 # if SerialThread.start is True:
@@ -44,26 +44,31 @@ def get_day_reservations():
                                       start_date__month=now.month, start_date__day=now.day)
 
 
-@receiver(models.signals.post_delete, sender=Reservation)
-@receiver(models.signals.post_save, sender=Reservation)
-def send_to_serial(sender, instance, **kwargs):
-    print('receiver called')
+def signal():
     thread = None
     if SerialThread.begin:
         for t in threading.enumerate():
             if t.name == 'serialThread':
                 print('thread found')
                 thread = t
-    tram1 = ['0']*16
-    tram2 = ['0']*16
+    tram1 = ['0'] * 16
+    tram2 = ['0'] * 16
     for res in get_day_reservations():
         print(res.start_date)
-        hour = res.start_date.hour-7
+        hour = res.start_date.hour - 7
         tram1[hour] = '1'
         if res.eclairage_paye:
             tram2[hour] = '1'
-    print('20;'+';'.join(tram1))
+    print('20;' + ';'.join(tram1))
     if thread is not None:
-        thread.send(bytes('20;'+';'.join(tram1)))
+        thread.send(bytes('20;' + ';'.join(tram1), encoding="utf-8"))
         time.sleep(2)
-        thread.send(bytes(';'.join(tram2)))
+        print(tram2)
+        thread.send(bytes(';'.join(tram2), encoding="utf-8"))
+
+
+@receiver(models.signals.post_delete, sender=Reservation)
+@receiver(models.signals.post_save, sender=Reservation)
+def send_to_serial(sender, instance, **kwargs):
+    print('receiver called')
+    threading.Thread(target=signal).start()
