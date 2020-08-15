@@ -59,16 +59,22 @@ def signal():
         tram1[hour] = '1'
         if res.eclairage_paye:
             tram2[hour] = '1'
-    print('20;' + ';'.join(tram1))
+
     if thread is not None:
-        thread.send(bytes('20;' + ';'.join(tram1), encoding="utf-8"))
-        time.sleep(2)
-        print(tram2)
-        thread.send(bytes(';'.join(tram2), encoding="utf-8"))
+        thread.msg = (bytes('20;' + ';'.join(tram1)+';', encoding="utf-8"),
+                      bytes(';'.join(tram2), encoding="utf-8"))
 
 
-@receiver(models.signals.post_delete, sender=Reservation)
+
 @receiver(models.signals.post_save, sender=Reservation)
 def send_to_serial(sender, instance, **kwargs):
     print('receiver called')
+    # signal()
+    threading.Thread(target=signal).start()
+
+
+@receiver(models.signals.post_delete, sender=Reservation)
+def send_to_serial2(sender, instance, **kwargs):
+    print('receiver delete called')
+    # signal()
     threading.Thread(target=signal).start()
