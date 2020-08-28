@@ -6,6 +6,7 @@ from django.utils import timezone
 import threading
 from core.task import SerialThread
 
+
 # if SerialThread.start is True:
 #     for t in threading.enumerate():
 #         if t.name == 'serialThread':
@@ -15,6 +16,11 @@ from core.task import SerialThread
 #     thread = SerialThread()
 #     print(thread)
 #     thread.start()
+class Membre(models.Model):
+    nom = models.CharField(max_length=35, unique=True)
+    tel = models.CharField(max_length=13, blank=True, null=True)
+    mail = models.EmailField(blank=True, null=True)
+
 
 
 class Terrain(models.Model):
@@ -25,14 +31,10 @@ class Reservation(models.Model):
     terrain = models.ForeignKey(Terrain, on_delete=models.CASCADE)
     start_date = models.DateTimeField(blank=False)
     end_date = models.DateTimeField(blank=False)
-    nom1 = models.CharField(max_length=30, blank=False)
-    prenom1 = models.CharField(max_length=20, blank=False)
-    nom2 = models.CharField(max_length=30, blank=True)
-    prenom2 = models.CharField(max_length=20, blank=True)
-    nom3 = models.CharField(max_length=30, blank=False)
-    prenom3 = models.CharField(max_length=20, blank=False)
-    nom4 = models.CharField(max_length=30, blank=True)
-    prenom4 = models.CharField(max_length=20, blank=True)
+    membre1 = models.ForeignKey(Membre, blank=False, on_delete=models.CASCADE, related_name='%(class)s_1')
+    membre2 = models.ForeignKey(Membre, blank=True, null=True, on_delete=models.CASCADE, related_name='%(class)s_2')
+    membre3 = models.ForeignKey(Membre, blank=False, on_delete=models.CASCADE, related_name='%(class)s_3')
+    membre4 = models.ForeignKey(Membre, blank=True, null=True, on_delete=models.CASCADE, related_name='%(class)s_4')
     eclairage = models.BooleanField(default=False, blank=False)
     eclairage_paye = models.BooleanField(default=False, blank=False)
     entrainement = models.BooleanField(default=False, blank=False)
@@ -61,9 +63,8 @@ def signal():
             tram2[hour] = '1'
 
     if thread is not None:
-        thread.msg = (bytes('20;' + ';'.join(tram1)+';', encoding="utf-8"),
+        thread.msg = (bytes('20;' + ';'.join(tram1) + ';', encoding="utf-8"),
                       bytes(';'.join(tram2), encoding="utf-8"))
-
 
 
 @receiver(models.signals.post_save, sender=Reservation)

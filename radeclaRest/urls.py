@@ -21,10 +21,11 @@ from radeclaRest import settings
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework import routers
 from django.conf.urls.static import static
-from core.views import ReservationViewSet
+from core.views import ReservationViewSet, MembreViewSet
 from core.task import SerialThread
 router = routers.DefaultRouter()
 router.register(r'reservation', ReservationViewSet, basename='Reservations')
+router.register(r'membre', MembreViewSet, basename='membre')
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -38,4 +39,4 @@ urlpatterns = [
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-SerialThread().start()
+# SerialThread().start()
