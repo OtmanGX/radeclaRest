@@ -72,11 +72,13 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
 }
 
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
     'http://localhost:8100',
     'http://localhost:8200',
+    'http://localhost:80',
+    'http://radecla.localhost:80',
 )
 
 ROOT_URLCONF = 'radeclaRest.urls'
