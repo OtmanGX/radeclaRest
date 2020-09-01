@@ -6,7 +6,6 @@ from django.utils import timezone
 import threading
 from core.task import SerialThread
 
-
 # if SerialThread.start is True:
 #     for t in threading.enumerate():
 #         if t.name == 'serialThread':

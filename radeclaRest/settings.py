@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from socket import gethostname, gethostbyname
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from datetime import timedelta
 
@@ -29,7 +29,29 @@ SECRET_KEY = 'd8c!&w)awg_4ils2pt2_uv*v0=rd_=1by5hzd6v#h-#cy_#ic_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ]
+
+ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname()]
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
 
 
 # Application definition
@@ -72,12 +94,17 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
 }
 
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
     'http://localhost:8100',
     'http://localhost:8200',
+    # 'http://192.168.1.149:4200',
 )
+
+CORS_ORIGIN_REGEX_WHITELIST = [
+    r"^http://192\.168\.1\.\d+:4200$",
+]
 
 ROOT_URLCONF = 'radeclaRest.urls'
 
