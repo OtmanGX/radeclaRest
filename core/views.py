@@ -8,6 +8,8 @@ from core.models import Reservation, Membre
 from core.serializers import ReservationSerializer, MembreSerializer
 from radeclaRest.utils import StandardResultsSetPagination
 
+import logging
+logger = logging.getLogger(__name__)
 
 class HelloView(APIView):
     # permission_classes = (IsAuthenticated,)
