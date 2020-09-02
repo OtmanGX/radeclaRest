@@ -98,12 +98,8 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
     'http://localhost:8100',
     'http://localhost:8200',
-<<<<<<< HEAD
-    # 'http://192.168.1.149:4200',
-=======
     'http://localhost:80',
     'http://radecla.localhost:80',
->>>>>>> e8f806ebf90d9ece7d9bd8604f5574665c8edf89
 )
 
 CORS_ORIGIN_REGEX_WHITELIST = [

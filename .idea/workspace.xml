@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b9c2a002-18bd-43cb-a725-d29e6f8b0f5c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/radeclaRest/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/settings.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1foXbITqQOeR9BrjWxbAaNELlB2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalResources" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Django" type="PythonConfigurationType" factoryName="Python">
+      <module name="radeclaRest" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="./manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b9c2a002-18bd-43cb-a725-d29e6f8b0f5c" name="Default Changelist" comment="" />
+      <created>1596885488057</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596885488057</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="278" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598693519598">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state x="278" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1052@0.0.1920.1052" timestamp="1598693519598" />
+    <state x="285" y="121" key="#com.intellij.execution.impl.EditConfigurationsDialog/62.28.1538.872@62.28.1538.872" timestamp="1596888096111" />
+    <state x="610" y="221" width="426" height="483" key="FileChooserDialogImpl" timestamp="1596888094969">
+      <screen x="62" y="28" width="1538" height="872" />
+    </state>
+    <state x="610" y="221" width="426" height="483" key="FileChooserDialogImpl/62.28.1538.872@62.28.1538.872" timestamp="1596888094969" />
+    <state width="1898" height="401" key="GridCell.Tab.0.bottom" timestamp="1598609785185">
+      <screen x="0" y="28" width="1920" height="1024" />
+    </state>
+    <state width="1898" height="401" key="GridCell.Tab.0.bottom/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785185" />
+    <state width="1505" height="218" key="GridCell.Tab.0.bottom/62.28.1538.872@62.28.1538.872" timestamp="1596890095082" />
+    <state width="1898" height="401" key="GridCell.Tab.0.center" timestamp="1598609785184">
+      <screen x="0" y="28" width="1920" height="1024" />
+    </state>
+    <state width="1898" height="401" key="GridCell.Tab.0.center/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785184" />
+    <state width="1505" height="218" key="GridCell.Tab.0.center/62.28.1538.872@62.28.1538.872" timestamp="1596890095081" />
+    <state width="1898" height="401" key="GridCell.Tab.0.left" timestamp="1598609785183">
+      <screen x="0" y="28" width="1920" height="1024" />
+    </state>
+    <state width="1898" height="401" key="GridCell.Tab.0.left/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785183" />
+    <state width="1505" height="218" key="GridCell.Tab.0.left/62.28.1538.872@62.28.1538.872" timestamp="1596890095081" />
+    <state width="1898" height="401" key="GridCell.Tab.0.right" timestamp="1598609785185">
+      <screen x="0" y="28" width="1920" height="1024" />
+    </state>
+    <state width="1898" height="401" key="GridCell.Tab.0.right/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785185" />
+    <state width="1505" height="218" key="GridCell.Tab.0.right/62.28.1538.872@62.28.1538.872" timestamp="1596890095082" />
+    <state x="456" y="161" key="SettingsEditor" timestamp="1598693543593">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state x="456" y="161" key="SettingsEditor/0.0.1920.1052@0.0.1920.1052" timestamp="1598693543593" />
+    <state x="623" y="253" width="672" height="678" key="search.everywhere.popup" timestamp="1597238431366">
+      <screen x="0" y="28" width="1920" height="1024" />
+    </state>
+    <state x="623" y="253" width="672" height="678" key="search.everywhere.popup/0.28.1920.1024@0.28.1920.1024" timestamp="1597238431366" />
+  </component>
+</project>
