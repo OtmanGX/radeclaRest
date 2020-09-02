@@ -17,7 +17,7 @@ class HelloView(APIView):
 
 
 class ReservationViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
@@ -35,7 +35,7 @@ class ReservationViewSet(viewsets.ModelViewSet):
 
 
 class MembreViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     queryset = Membre.objects.all()
     serializer_class = MembreSerializer
     pagination_class = StandardResultsSetPagination

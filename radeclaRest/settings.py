@@ -16,7 +16,6 @@ import os
 from datetime import timedelta
 
 from core.task import SerialThread
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
