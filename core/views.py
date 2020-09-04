@@ -12,7 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 class HelloView(APIView):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     def get(self, request):
         content = {'username': 'admin'}
         return Response(content)
@@ -37,7 +37,7 @@ class ReservationViewSet(viewsets.ModelViewSet):
 
 
 class MembreViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     queryset = Membre.objects.all()
     serializer_class = MembreSerializer
     pagination_class = StandardResultsSetPagination
