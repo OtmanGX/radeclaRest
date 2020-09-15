@@ -16,8 +16,8 @@ from socket import gethostname, gethostbyname
 from datetime import timedelta
 
 from core.task import SerialThread
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -31,7 +31,6 @@ DEBUG = True
 # ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ]
 
 ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname()]
-
 
 LOGGING = {
     'version': 1,
@@ -52,7 +51,6 @@ LOGGING = {
     },
 }
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -63,10 +61,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    #Third-Part apps
+    # Third-Part apps
     'rest_framework',
-    #Local apps
+    'django_filters',
+    # Local apps
     'core',
+    'dashboard',
 ]
 
 # Rest Part
@@ -74,6 +74,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',
+                                'rest_framework.filters.OrderingFilter',
+                                'rest_framework.filters.SearchFilter',),
 }
 
 MIDDLEWARE = [
@@ -126,7 +129,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'radeclaRest.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -142,7 +144,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -162,8 +163,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -176,7 +175,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

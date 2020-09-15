@@ -21,11 +21,14 @@ from radeclaRest import settings
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework import routers
 from django.conf.urls.static import static
-from core.views import ReservationViewSet, MembreViewSet
+from core.views import ReservationViewSet, MembreViewSet, CategorieViewSet, CotisationViewSet
+from dashboard.views import dashboard_view
 from core.task import SerialThread
 router = routers.DefaultRouter()
 router.register(r'reservation', ReservationViewSet, basename='Reservations')
 router.register(r'membre', MembreViewSet, basename='membre')
+router.register(r'categories', CategorieViewSet, basename='categories')
+router.register(r'cotisations', CotisationViewSet, basename='cotisations')
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -35,8 +38,9 @@ urlpatterns = [
     # Auth
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-    # Core
+    # Dashboard
+    path('dashboard/', dashboard_view, name='dashboard'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-SerialThread().start()
+# SerialThread().start()

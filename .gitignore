@@ -142,3 +142,4 @@ cython_debug/
 logtxt
 .idea/
 .idea/*
+.idea
