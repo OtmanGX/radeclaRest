@@ -35,7 +35,7 @@ class MembreSerializer(serializers.ModelSerializer):
         super(MembreSerializer, self).__init__(instance, data, **kwargs)
 
     categorie = serializers.SlugRelatedField(many=True, queryset=Categorie.objects.all(), slug_field='nom',
-                                             required=False)
+                                             required=False, allow_null=True)
 
     # cotisation = serializers.SlugRelatedField(queryset=Cotisation.objects.all(), slug_field='pk', required=False)
 

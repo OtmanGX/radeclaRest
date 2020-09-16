@@ -38,7 +38,7 @@ class Membre(models.Model):
     entraineur = models.BooleanField(default=False)
     tournoi = models.BooleanField(default=False)
     licence_fideration = models.BooleanField(default=False)
-    categorie = models.ManyToManyField(Categorie, related_name="membres", blank=True)
+    categorie = models.ManyToManyField(Categorie, related_name="membres", blank=True, null=True)
     cotisation = models.ForeignKey(Cotisation, related_name='membres', on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
