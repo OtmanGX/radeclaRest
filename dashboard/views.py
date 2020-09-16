@@ -44,11 +44,15 @@ def dashboard_view(request):
         heures=Coalesce(Sum('reservations__duration', filter=Q(reservations__start_date__gte=current_day())),
                         0)).order_by('matricule').values('matricule', 'heures')
 
-    entraineur = Membre.objects.filter(entraineur=True).annotate(
-        total=Count(F('reservation_1')) + Count(F('reservation_2')) + Count(F('reservation_3')) + Count(
-            F('reservation_4'))).values("nom", "total")
+    entraineur_month = Membre.objects.filter(entraineur=True).annotate(
+        total=Count('reservations', filter=Q(reservations__start_date__gte=current_month()))).values("nom", "total")
+    entraineur_week = Membre.objects.filter(entraineur=True).annotate(
+        total=Count('reservations', filter=Q(reservations__start_date__gte=current_week()))).values("nom", "total")
+    entraineur_day = Membre.objects.filter(entraineur=True).annotate(
+        total=Count('reservations', filter=Q(reservations__start_date__gte=current_day()))).values("nom", "total")
+
     hours = Reservation.objects.annotate(hour=ExtractHour('start_date')).values('hour').annotate(
-        nb=Count('hour')).order_by('-nb')[:5]
+            nb=Count('hour')).order_by('-nb')[:5]
 
     moyen = Reservation.objects.annotate(day=ExtractDay('start_date')).values('day').annotate(
         total_duration=Sum('duration')).aggregate(avg_hours=Avg('total_duration'))
@@ -61,7 +65,7 @@ def dashboard_view(request):
     return Response({'terrainMonth': terrain_month,
                      'terrainWeek': terrain_week,
                      'terrainDay': terrain_day,
-                     'entraineur': entraineur,
+                     'entraineur': [entraineur_month, entraineur_week, entraineur_day],
                      'hours': hours,
                      'avg_hours': moyen['avg_hours'],
                      'nmembres': nmembres,
