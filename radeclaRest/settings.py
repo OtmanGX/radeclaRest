@@ -30,7 +30,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ]
 
-ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname()]
+ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname(), '127.0.0.1']
 
 LOGGING = {
     'version': 1,
@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     # Local apps
+    'users',
     'core',
     'dashboard',
 ]
@@ -175,6 +176,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = 'users.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

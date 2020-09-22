@@ -18,8 +18,9 @@ class Categorie(models.Model):
 class Cotisation(models.Model):
     type = models.CharField(max_length=25, blank=False)
     paye = models.BooleanField(default=False)
+    montant = models.PositiveSmallIntegerField(default=4000)
     montant_paye = models.PositiveSmallIntegerField()
-    reste_paye = models.PositiveSmallIntegerField()
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.id} {self.type}"
@@ -38,7 +39,7 @@ class Membre(models.Model):
     entraineur = models.BooleanField(default=False)
     tournoi = models.BooleanField(default=False)
     licence_fideration = models.BooleanField(default=False)
-    categorie = models.ManyToManyField(Categorie, related_name="membres", blank=True, null=True)
+    categorie = models.ManyToManyField(Categorie, related_name="membres", blank=True)
     cotisation = models.ForeignKey(Cotisation, related_name='membres', on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
@@ -106,3 +107,5 @@ def send_to_serial2(sender, instance, **kwargs):
     print('receiver delete called')
     # signal()
     threading.Thread(target=signal).start()
+
+

@@ -22,7 +22,7 @@ from rest_framework_simplejwt import views as jwt_views
 from rest_framework import routers
 from django.conf.urls.static import static
 from core.views import ReservationViewSet, MembreViewSet, CategorieViewSet, CotisationViewSet
-from dashboard.views import dashboard_view
+from dashboard.views import dashboard_view, terrain_stats
 from core.task import SerialThread
 router = routers.DefaultRouter()
 router.register(r'reservation', ReservationViewSet, basename='Reservations')
@@ -31,7 +31,7 @@ router.register(r'categories', CategorieViewSet, basename='categories')
 router.register(r'cotisations', CotisationViewSet, basename='cotisations')
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', include(router.urls)),
     # System
     path('hello/', core_views.HelloView.as_view(), name='hello'),
@@ -40,6 +40,7 @@ urlpatterns = [
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
+    path('dashboard/terrains', terrain_stats, name='terrain'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

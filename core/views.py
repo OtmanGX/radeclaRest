@@ -1,3 +1,4 @@
+import django_filters
 from django.shortcuts import render
 from rest_framework import viewsets, filters
 from rest_framework.views import APIView
@@ -42,14 +43,25 @@ class ReservationViewSet(viewsets.ModelViewSet):
             return super().list(self, request, *args, **kwargs)
 
 
+class MembreFilter(django_filters.FilterSet):
+    no_cotisation = django_filters.BooleanFilter(field_name='cotisation', lookup_expr='isnull')
+
+    class Meta:
+        model = Membre
+        fields = ['nom', 'entraineur', 'cotisation', 'cotisation__paye', 'no_cotisation']
+
+
 class MembreViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Membre.objects.all()
     serializer_class = MembreSerializer
     pagination_class = StandardResultsSetPagination
     # filter_backends = [filters.SearchFilter, filters.OrderingFilter, filters.BaseFilterBackend]
+    # no_cotisation = django_filters.BooleanFilter(name='cotisation__isnull')
     search_fields = ['nom', ]
-    filter_fields = ('nom', 'entraineur')
+    filterset_class = MembreFilter
+
+    # filter_fields = ('nom', 'entraineur', 'cotisation', 'cotisation__paye', 'no_cotisation')
 
     def list(self, request, *args, **kwargs):
         is_all = request.GET.get('all', None)
