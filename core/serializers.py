@@ -1,8 +1,18 @@
+from django.contrib.auth.models import User
 from django.db.models import QuerySet
 from rest_framework import serializers
 from rest_framework.fields import empty
 
 from core.models import Reservation, Membre, Categorie, Cotisation
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'membre']
+        read_only_fields = ['id', 'username', 'email', 'membre']
+        depth = 1
 
 
 class ReservationSerializer(serializers.ModelSerializer):
@@ -16,9 +26,15 @@ class ReservationSerializer(serializers.ModelSerializer):
             setattr(self.Meta, 'depth', 0)
         super(ReservationSerializer, self).__init__(instance, data, **kwargs)
 
+    def validate(self, data):
+        if data.get("players") and data["players"][0] == data["players"][1]:
+            raise serializers.ValidationError("les joueurs devraient être différent")
+        return data
+
     class Meta:
         model = Reservation
         fields = '__all__'
+        extra_kwargs = {'created_by': {'default': serializers.CurrentUserDefault()}}
         depth = 0
 
 

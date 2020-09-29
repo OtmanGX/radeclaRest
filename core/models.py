@@ -1,8 +1,10 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.dispatch import receiver
 from django.utils import timezone
 import threading
 from core.task import SerialThread
+
 
 
 class Categorie(models.Model):
@@ -21,6 +23,7 @@ class Cotisation(models.Model):
     montant = models.PositiveSmallIntegerField(default=4000)
     montant_paye = models.PositiveSmallIntegerField()
     updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.id} {self.type}"
@@ -30,12 +33,14 @@ class Membre(models.Model):
     SEX_CHOICES = (('H', 'HOMME'),
                    ('F', 'FEMME'))
     nom = models.CharField(max_length=35, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     sexe = models.CharField(choices=SEX_CHOICES, default='H', max_length=2)
     tel = models.CharField(max_length=13, blank=True, null=True)
     date_naissance = models.DateField(blank=True, null=True)
     age = models.SmallIntegerField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     mail = models.EmailField(blank=True, null=True)
+    profession = models.CharField(max_length=35, null=True)
     entraineur = models.BooleanField(default=False)
     tournoi = models.BooleanField(default=False)
     licence_fideration = models.BooleanField(default=False)
@@ -54,18 +59,21 @@ class Terrain(models.Model):
 
 
 class Reservation(models.Model):
+    CHOICES = (
+        ('E', 'Entrainement'),
+        ('M', 'Match'),
+        ('T', 'Tournoi'),
+                )
     terrain = models.ForeignKey(Terrain,related_name='reservations', on_delete=models.CASCADE)
     start_date = models.DateTimeField(blank=False)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     duration = models.PositiveSmallIntegerField(default=1)
     end_date = models.DateTimeField(blank=True, null=True)
     players = models.ManyToManyField(Membre, related_name='reservations', blank=True)
-    membre1 = models.ForeignKey(Membre, blank=True, null=True, on_delete=models.CASCADE, related_name='%(class)s_1')
-    membre2 = models.ForeignKey(Membre, blank=True, null=True, on_delete=models.CASCADE, related_name='%(class)s_2')
-    membre3 = models.ForeignKey(Membre, blank=True, null=True, on_delete=models.CASCADE, related_name='%(class)s_3')
-    membre4 = models.ForeignKey(Membre, blank=True, null=True, on_delete=models.CASCADE, related_name='%(class)s_4')
     eclairage = models.BooleanField(default=False, blank=False)
     eclairage_paye = models.BooleanField(default=False, blank=False)
     entrainement = models.BooleanField(default=False, blank=False)
+    type_match = models.CharField(choices=CHOICES, default='M', max_length=25)
 
 
 def get_day_reservations():

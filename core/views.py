@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from core.models import Reservation, Membre, Categorie, Cotisation
-from core.serializers import ReservationSerializer, MembreSerializer, CategorieSerializer, CotisationSerializer
+from core.serializers import ReservationSerializer, MembreSerializer, CategorieSerializer, CotisationSerializer, UserSerializer
 from radeclaRest.utils import StandardResultsSetPagination
 
 # Filter
@@ -20,9 +20,9 @@ logger = logging.getLogger(__name__)
 class HelloView(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self, request):
-        content = {'username': 'admin'}
-        return Response(content)
+    def get(self, request, *args, **kwargs):
+        user = UserSerializer(request.user)
+        return Response(data=user.data)
 
 
 class ReservationViewSet(viewsets.ModelViewSet):
@@ -31,16 +31,20 @@ class ReservationViewSet(viewsets.ModelViewSet):
     serializer_class = ReservationSerializer
     # filter_backends = [filters.SearchFilter, filters.OrderingFilter, filters.BaseFilterBackend]
     search_fields = ['terrain__matricule', ]
+    filter_fields = '__all__'
 
     def list(self, request, *args, **kwargs):
         start_date = request.GET.get('start_date', None)
-        if start_date:
+        if start_date:  
             end_date = request.GET.get('end_date')
             queryset = Reservation.objects.filter(start_date__range=(start_date, end_date))
             serializer = self.get_serializer(queryset, many=True)
             return Response(serializer.data)
         else:
             return super().list(self, request, *args, **kwargs)
+
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
 
 
 class MembreFilter(django_filters.FilterSet):

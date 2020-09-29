@@ -9,7 +9,8 @@ from datetime import datetime, timedelta
 from django.db.models.functions import Coalesce
 from django.db.models import Sum, Count, F, Q, Avg
 from django.db.models.functions import ExtractHour, ExtractDay
-from core.models import Terrain, Membre, Reservation
+from core.models import Terrain, Membre, Reservation, Cotisation
+from dashboard.apps import get_terrain_month, get_terrain_week, get_terrain_day
 
 time_to_zero = lambda d: \
     d.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -78,33 +79,104 @@ def terrain_stats(request):
     _date = request.GET.get("date")
     _year = request.GET.get("year")
     _month = request.GET.get("month")
-    _year2 = request.GET.get("year")
-    _month2 = request.GET.get("month")
+    _year2 = request.GET.get("year2")
+    _month2 = request.GET.get("month2")
+    _week = request.GET.get("week")
+    _week2 = request.GET.get("week2")
+    _day = request.GET.get("day")
 
     if _date == 'month':
-        if _year2:
-            terrain_month = Terrain.objects.annotate(
-                heures=Coalesce(Sum('reservations__duration',
-                                    filter=Q(reservations__start_date__year__range=(_year, _year2)) & Q(reservations__start_date__month__range=(_month, _month2))
-                                           & Q(reservations__entrainement=False)
-                                    ), 0),
-                heures2=Coalesce(Sum('reservations__duration',
-                                        filter=Q(reservations__start_date__year__range=(_year, _year2)) & Q(reservations__start_date__month__range=(_month, _month2))
-                                     & Q(reservations__entrainement=True)
-                                        ), 0),
-
-            ).order_by('-heures').values(
-                'matricule', 'heures', 'heures2')
-        terrain_month = Terrain.objects.annotate(
-            heures=Coalesce(Sum('reservations__duration',
-                                filter=Q(reservations__start_date__year=_year) & Q(reservations__start_date__month=_month) & Q(reservations__entrainement=False)), 0),
-            heures2=Coalesce(Sum('reservations__duration',
-                                 filter=Q(reservations__start_date__year=_year) & Q(reservations__start_date__month=_month)
-                                        & Q(reservations__entrainement=True)
-                                 ), 0),
-        ).order_by('-heures').values('matricule', 'heures', 'heures2')
+        terrain_month = get_terrain_month(_year, _year2, _month, _month2)
         return Response(terrain_month)
+    elif _date == 'week':
+        terrain_week = get_terrain_week(_year, _year2, _week, _week2)
+        return Response(terrain_week)
+    elif _date == 'day':
+        terrain_day = get_terrain_day(_year, _month, _day)
+        return Response(terrain_day)
 
     return Response({})
 
 
+@api_view(['GET'])
+def top_hours_stats(request):
+    hours = Reservation.objects.annotate(hour=ExtractHour('start_date')).values('hour').annotate(
+        nb=Count('hour')).order_by('-nb')[:5]
+    by_age = request.GET.get('age')
+    if by_age:
+        age_ranges = ([5, 10], [10, 12], [12, 16], [18, 25],
+                      [25, 40], [40, 50], [50, 60], [60, 70], [70, 80])
+        res = {}
+        for age_range in age_ranges:
+            res['-'.join(map(str, age_range))] = {hour: Reservation.objects.filter(players__age__range=age_range,
+                                                                                   start_date__hour=hour).count() for
+                                                  hour in map(lambda x: x['hour'], hours[::-1])}
+        return Response(res)
+
+    return Response(hours)
+
+
+@api_view(['GET'])
+def training_stats(request):
+    _date = request.GET.get("date")
+    _year = request.GET.get("year")
+    _month = request.GET.get("month")
+    _year2 = request.GET.get("year2")
+    _month2 = request.GET.get("month2")
+    _week = request.GET.get("week")
+    _week2 = request.GET.get("week2")
+    _day = request.GET.get("day")
+    _membre = request.GET.get("with")
+
+    myfilter = Q(reservations__start_date__year=_year)
+    if _date == 'month':
+        myfilter = myfilter & Q(reservations__start_date__month=_month)
+    elif _date == 'week':
+        myfilter = myfilter & Q(reservations__start_date__week=_week)
+    if _membre:
+        myfilter = myfilter & Q(reservations__players__nom=_membre)
+
+    res = Membre.objects.filter(entraineur=True).annotate(
+        total=Coalesce(Sum('reservations__duration', filter=myfilter), 0)).order_by('-total').values("nom", "total")
+
+    return Response(res)
+
+
+@api_view(['GET'])
+def total_cotisation(request):
+    res = Cotisation.objects.filter(created_at__year=2020).aggregate(total=Sum('montant_paye'))
+    return Response(res)
+
+
+@api_view(['GET'])
+def cotisation_a_payer(request):
+    res = Cotisation.objects.filter(created_at__year=2020).aggregate(total=Sum('montant') - Sum('montant_paye'))
+    return Response(res)
+
+
+@api_view(['GET'])
+def members_stats(request):
+    _date = request.GET.get("date")
+    _year = request.GET.get("year")
+    _month = request.GET.get("month")
+    _year2 = request.GET.get("year2")
+    _month2 = request.GET.get("month2")
+    _week = request.GET.get("week")
+    _week2 = request.GET.get("week2")
+    _day = request.GET.get("day")
+    _membre = request.GET.get("with")
+    myfilter = Q(reservations__start_date__year=_year)
+    if _date == 'month':
+        myfilter = myfilter & Q(reservations__start_date__month=_month)
+    elif _date == 'week':
+        myfilter = myfilter & Q(reservations__start_date__week=_week)
+    if _membre:
+        myfilter = myfilter & Q(reservations__players__nom=_membre)
+
+    myfilter2 = myfilter & Q(reservations__type_match='M')
+    myfilter3 = myfilter & Q(reservations__type_match='E')
+    res = Membre.objects.filter(entraineur=False).annotate(
+        total=Coalesce(Sum('reservations__duration', filter=myfilter), 0),
+        match=Coalesce(Sum('reservations__duration', filter=myfilter2), 0),
+        entrainement=Coalesce(Sum('reservations__duration', filter=myfilter3), 0), ).order_by('-total').values("nom", "match", "entrainement", "total")
+    return Response(res)

@@ -4,10 +4,21 @@
     <list default="true" id="b9c2a002-18bd-43cb-a725-d29e6f8b0f5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nohup.out" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/radeclaRest/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/radeclaRest/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,34 +96,42 @@
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state x="375" y="240" width="1235" height="600" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog/66.28.1854.1052@66.28.1854.1052" timestamp="1600255652685" />
+    <state x="801" y="259" width="376" height="560" key="#com.intellij.ide.util.MemberChooser" timestamp="1600877226029">
+      <screen x="66" y="28" width="1854" height="1052" />
+    </state>
+    <state x="801" y="259" width="376" height="560" key="#com.intellij.ide.util.MemberChooser/66.28.1854.1052@66.28.1854.1052" timestamp="1600877226029" />
+    <state x="726" y="290" width="526" height="498" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601288587216">
+      <screen x="66" y="28" width="1854" height="1052" />
+    </state>
+    <state x="726" y="290" width="526" height="498" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/66.28.1854.1052@66.28.1854.1052" timestamp="1601288587216" />
     <state x="610" y="221" width="426" height="483" key="FileChooserDialogImpl" timestamp="1596888094969">
       <screen x="62" y="28" width="1538" height="872" />
     </state>
     <state x="610" y="221" width="426" height="483" key="FileChooserDialogImpl/62.28.1538.872@62.28.1538.872" timestamp="1596888094969" />
-    <state width="1832" height="401" key="GridCell.Tab.0.bottom" timestamp="1600769432960">
+    <state width="1832" height="202" key="GridCell.Tab.0.bottom" timestamp="1601392355747">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state width="1898" height="401" key="GridCell.Tab.0.bottom/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785185" />
     <state width="1505" height="218" key="GridCell.Tab.0.bottom/62.28.1538.872@62.28.1538.872" timestamp="1596890095082" />
-    <state width="1832" height="401" key="GridCell.Tab.0.bottom/66.28.1854.1052@66.28.1854.1052" timestamp="1600769432960" />
-    <state width="1832" height="401" key="GridCell.Tab.0.center" timestamp="1600769432960">
+    <state width="1832" height="202" key="GridCell.Tab.0.bottom/66.28.1854.1052@66.28.1854.1052" timestamp="1601392355747" />
+    <state width="1832" height="202" key="GridCell.Tab.0.center" timestamp="1601392355746">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state width="1898" height="401" key="GridCell.Tab.0.center/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785184" />
     <state width="1505" height="218" key="GridCell.Tab.0.center/62.28.1538.872@62.28.1538.872" timestamp="1596890095081" />
-    <state width="1832" height="401" key="GridCell.Tab.0.center/66.28.1854.1052@66.28.1854.1052" timestamp="1600769432960" />
-    <state width="1832" height="401" key="GridCell.Tab.0.left" timestamp="1600769432959">
+    <state width="1832" height="202" key="GridCell.Tab.0.center/66.28.1854.1052@66.28.1854.1052" timestamp="1601392355746" />
+    <state width="1832" height="202" key="GridCell.Tab.0.left" timestamp="1601392355745">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state width="1898" height="401" key="GridCell.Tab.0.left/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785183" />
     <state width="1505" height="218" key="GridCell.Tab.0.left/62.28.1538.872@62.28.1538.872" timestamp="1596890095081" />
-    <state width="1832" height="401" key="GridCell.Tab.0.left/66.28.1854.1052@66.28.1854.1052" timestamp="1600769432959" />
-    <state width="1832" height="401" key="GridCell.Tab.0.right" timestamp="1600769432960">
+    <state width="1832" height="202" key="GridCell.Tab.0.left/66.28.1854.1052@66.28.1854.1052" timestamp="1601392355745" />
+    <state width="1832" height="202" key="GridCell.Tab.0.right" timestamp="1601392355746">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state width="1898" height="401" key="GridCell.Tab.0.right/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785185" />
     <state width="1505" height="218" key="GridCell.Tab.0.right/62.28.1538.872@62.28.1538.872" timestamp="1596890095082" />
-    <state width="1832" height="401" key="GridCell.Tab.0.right/66.28.1854.1052@66.28.1854.1052" timestamp="1600769432960" />
+    <state width="1832" height="202" key="GridCell.Tab.0.right/66.28.1854.1052@66.28.1854.1052" timestamp="1601392355746" />
     <state x="499" y="491" width="826" height="286" key="Performance.Activity.Monitor" timestamp="1600101172235">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
@@ -121,9 +140,21 @@
       <screen x="0" y="0" width="1920" height="1052" />
     </state>
     <state x="456" y="161" key="SettingsEditor/0.0.1920.1052@0.0.1920.1052" timestamp="1598693543593" />
-    <state x="623" y="253" width="672" height="678" key="search.everywhere.popup" timestamp="1597238431366">
-      <screen x="0" y="28" width="1920" height="1024" />
+    <state x="668" y="259" width="672" height="697" key="search.everywhere.popup" timestamp="1600860744607">
+      <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state x="623" y="253" width="672" height="678" key="search.everywhere.popup/0.28.1920.1024@0.28.1920.1024" timestamp="1597238431366" />
+    <state x="668" y="259" width="672" height="697" key="search.everywhere.popup/66.28.1854.1052@66.28.1854.1052" timestamp="1600860744607" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/core/models.py</url>
+          <line>39</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

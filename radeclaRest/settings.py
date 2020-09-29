@@ -30,26 +30,26 @@ DEBUG = True
 
 # ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ]
 
-ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname(), '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname(), '127.0.0.1', '192.168.1.96']
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'debug.log'),
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'debug.log'),
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#     },
+# }
 
 # Application definition
 
@@ -65,7 +65,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     # Local apps
-    'users',
     'core',
     'dashboard',
 ]
@@ -104,6 +103,8 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:8200',
     'http://localhost:80',
     'http://radecla.localhost:80',
+    'http://192.168.1.132:8100',
+    'http://192.168.1.132'
 )
 
 CORS_ORIGIN_REGEX_WHITELIST = [
@@ -134,12 +135,12 @@ WSGI_APPLICATION = 'radeclaRest.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'djongo',
-    #     'NAME': 'facedb',
-    #     'HOST': '127.0.0.1',
-    #     'PORT': 27017
-    # }
+    'mongo': {
+        'ENGINE': 'djongo',
+        'NAME': 'radecladb',
+        'HOST': '127.0.0.1',
+        'PORT': 27017
+    },
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -177,7 +178,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL = 'users.User'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
