@@ -216,15 +216,15 @@ def terrain_stats_hour(request):
     now = timezone.now()
     res1 = Terrain.objects.filter(reservations__start_date__day=now.day,
                                   reservations__start_date__month=now.month,
-                                  reservations__start_date__hour__range=[8, 14]).count()
+                                  reservations__start_date__hour__range=[7, 13]).count()
 
     res2 = Terrain.objects.filter(reservations__start_date__day=now.day,
                                   reservations__start_date__month=now.month,
-                                  reservations__start_date__hour__range=[14, 19]).count()
+                                  reservations__start_date__hour__range=[13, 18]).count()
 
     res3 = Terrain.objects.filter(reservations__start_date__day=now.day,
                                   reservations__start_date__month=now.month,
-                                  reservations__start_date__hour__range=[19, 24]).count()
+                                  reservations__start_date__hour__range=[18, 23]).count()
 
     membres = Membre.objects.filter(entraineur=False).count()
     membres_paye = Membre.objects.filter(cotisation__paye=True).count()
