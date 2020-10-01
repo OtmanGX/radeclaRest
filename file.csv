@@ -1,0 +1,15 @@
+id,nom,sexe,mail,tel,age,date_naissance,profession,tournoi,licence_féderation,cotisation__type,cotisation__paye,montant_cotisation,cotisation_montant_payé,cotisation_date_paiement
+6,BENEYAD Othman,H,otmangx@gmail.com,0612423061,24,1996-05-10,,False,False,individuel,True,4000,4000,2020-09-25
+7,ACHAFFAJ Aissa,H,,,24,,,False,False,,,,,
+23,Mohamed Sabri,H,,,26,,,False,False,,,,,
+24,brahim salhi,H,,,20,,,False,False,individuel,False,4000,3000,2020-09-25
+37,Test,H,,,10,,,True,False,couple,True,4000,4000,2020-09-25
+38,Testa,H,,,6,,,False,False,couple,True,4000,4000,2020-09-25
+43,Entraineur1,H,,0612423061,,,,False,False,,,,,
+52,Entraineur2,H,,,,,,False,False,,,,,
+53,Entraineur3,H,,,,,,False,False,,,,,
+54,Entraineur4,H,,,,,,False,False,,,,,
+55,Someone,H,,,,,,False,False,,,,,
+56,p3,H,,,,,,False,False,famille,False,4000,4000,2020-09-25
+58,p2,H,,,,,,False,False,famille,False,4000,4000,2020-09-25
+57,p1,H,,,,,Avocat,False,True,famille,False,4000,4000,2020-09-25

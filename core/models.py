@@ -43,7 +43,7 @@ class Membre(models.Model):
     profession = models.CharField(max_length=35, null=True)
     entraineur = models.BooleanField(default=False)
     tournoi = models.BooleanField(default=False)
-    licence_fideration = models.BooleanField(default=False)
+    licence_féderation = models.BooleanField(default=False)
     categorie = models.ManyToManyField(Categorie, related_name="membres", blank=True)
     cotisation = models.ForeignKey(Cotisation, related_name='membres', on_delete=models.CASCADE, blank=True, null=True)
 

@@ -135,12 +135,16 @@ WSGI_APPLICATION = 'radeclaRest.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'mongo': {
-        'ENGINE': 'djongo',
-        'NAME': 'radecladb',
-        'HOST': '127.0.0.1',
-        'PORT': 27017
-    },
+    # 'default': {
+    #     'ENGINE': 'djongo',
+    #     'NAME': 'radecladb',
+    #     'HOST': '127.0.0.1',
+    #     # 'USERNAME': 'gxAdmin',
+    #     # 'PASSWORD': 'mgadtech@_@',
+    #     # 'SOURCE': 'admin',
+    #     # 'mechanism': '',
+    #     'PORT': 27017
+    # },
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),

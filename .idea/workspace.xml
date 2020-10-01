@@ -3,22 +3,33 @@
   <component name="ChangeListManager">
     <list default="true" id="b9c2a002-18bd-43cb-a725-d29e6f8b0f5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0002_reservation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0003_membre.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0004_auto_20200826_1320.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0005_auto_20200826_1321.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0006_auto_20200826_1742.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0007_auto_20200908_0948.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0008_auto_20200910_1556.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0009_auto_20200911_1355.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0010_auto_20200914_1303.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0011_auto_20200914_1614.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0012_auto_20200914_1902.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0013_auto_20200915_1216.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0014_auto_20200918_1659.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0015_auto_20200922_1008.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0016_auto_20200923_1127.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0017_reservation_created_by.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0018_cotisation_created_at.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0019_membre_profession.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0020_reservation_type_match.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0021_auto_20200929_1508.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nohup.out" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/radeclaRest/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/radeclaRest/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,30 +119,30 @@
       <screen x="62" y="28" width="1538" height="872" />
     </state>
     <state x="610" y="221" width="426" height="483" key="FileChooserDialogImpl/62.28.1538.872@62.28.1538.872" timestamp="1596888094969" />
-    <state width="1832" height="202" key="GridCell.Tab.0.bottom" timestamp="1601392355747">
+    <state width="1832" height="282" key="GridCell.Tab.0.bottom" timestamp="1601553928685">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state width="1898" height="401" key="GridCell.Tab.0.bottom/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785185" />
     <state width="1505" height="218" key="GridCell.Tab.0.bottom/62.28.1538.872@62.28.1538.872" timestamp="1596890095082" />
-    <state width="1832" height="202" key="GridCell.Tab.0.bottom/66.28.1854.1052@66.28.1854.1052" timestamp="1601392355747" />
-    <state width="1832" height="202" key="GridCell.Tab.0.center" timestamp="1601392355746">
+    <state width="1832" height="282" key="GridCell.Tab.0.bottom/66.28.1854.1052@66.28.1854.1052" timestamp="1601553928685" />
+    <state width="1832" height="282" key="GridCell.Tab.0.center" timestamp="1601553928684">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state width="1898" height="401" key="GridCell.Tab.0.center/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785184" />
     <state width="1505" height="218" key="GridCell.Tab.0.center/62.28.1538.872@62.28.1538.872" timestamp="1596890095081" />
-    <state width="1832" height="202" key="GridCell.Tab.0.center/66.28.1854.1052@66.28.1854.1052" timestamp="1601392355746" />
-    <state width="1832" height="202" key="GridCell.Tab.0.left" timestamp="1601392355745">
+    <state width="1832" height="282" key="GridCell.Tab.0.center/66.28.1854.1052@66.28.1854.1052" timestamp="1601553928684" />
+    <state width="1832" height="282" key="GridCell.Tab.0.left" timestamp="1601553928683">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state width="1898" height="401" key="GridCell.Tab.0.left/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785183" />
     <state width="1505" height="218" key="GridCell.Tab.0.left/62.28.1538.872@62.28.1538.872" timestamp="1596890095081" />
-    <state width="1832" height="202" key="GridCell.Tab.0.left/66.28.1854.1052@66.28.1854.1052" timestamp="1601392355745" />
-    <state width="1832" height="202" key="GridCell.Tab.0.right" timestamp="1601392355746">
+    <state width="1832" height="282" key="GridCell.Tab.0.left/66.28.1854.1052@66.28.1854.1052" timestamp="1601553928683" />
+    <state width="1832" height="282" key="GridCell.Tab.0.right" timestamp="1601553928685">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state width="1898" height="401" key="GridCell.Tab.0.right/0.28.1920.1024@0.28.1920.1024" timestamp="1598609785185" />
     <state width="1505" height="218" key="GridCell.Tab.0.right/62.28.1538.872@62.28.1538.872" timestamp="1596890095082" />
-    <state width="1832" height="202" key="GridCell.Tab.0.right/66.28.1854.1052@66.28.1854.1052" timestamp="1601392355746" />
+    <state width="1832" height="282" key="GridCell.Tab.0.right/66.28.1854.1052@66.28.1854.1052" timestamp="1601553928685" />
     <state x="499" y="491" width="826" height="286" key="Performance.Activity.Monitor" timestamp="1600101172235">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
@@ -140,6 +151,10 @@
       <screen x="0" y="0" width="1920" height="1052" />
     </state>
     <state x="456" y="161" key="SettingsEditor/0.0.1920.1052@0.0.1920.1052" timestamp="1598693543593" />
+    <state x="603" y="149" width="772" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601464564709">
+      <screen x="66" y="28" width="1854" height="1052" />
+    </state>
+    <state x="603" y="149" width="772" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/66.28.1854.1052@66.28.1854.1052" timestamp="1601464564709" />
     <state x="668" y="259" width="672" height="697" key="search.everywhere.popup" timestamp="1600860744607">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>

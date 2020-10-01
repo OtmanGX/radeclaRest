@@ -1,16 +1,18 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
 # Time
 from datetime import datetime, timedelta
-
 # Query
 from django.db.models.functions import Coalesce
 from django.db.models import Sum, Count, F, Q, Avg
 from django.db.models.functions import ExtractHour, ExtractDay
 from core.models import Terrain, Membre, Reservation, Cotisation
 from dashboard.apps import get_terrain_month, get_terrain_week, get_terrain_day
+
+from core.models import *
+import csv
 
 time_to_zero = lambda d: \
     d.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -29,6 +31,30 @@ def current_week():
 def current_day():
     d = time_to_zero(datetime.utcnow())
     return d
+
+
+def export_membres_toexcel(request):
+    membres = Membre.objects.distinct().annotate(
+        montant_cotisation=F('cotisation__montant'),
+        cotisation_montant_payé=F('cotisation__montant_paye'),
+        cotisation_date_paiement=F('cotisation__created_at'), ).distinct() \
+        .values('id', 'nom', 'sexe', 'mail', 'tel', 'age', 'date_naissance',
+                'profession',
+                'tournoi', 'licence_féderation', 'cotisation__type', 'cotisation__paye',
+                'montant_cotisation', 'cotisation_montant_payé', 'cotisation_date_paiement')
+    for m in membres:
+        if m['cotisation_date_paiement']:
+            m['cotisation_date_paiement'] = m['cotisation_date_paiement'].date()
+    with open('file.csv', 'w') as csvfile:
+        fieldnames = list(membres[0].keys())
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames, dialect='excel')
+        writer.writeheader()
+        writer.writerows(membres)
+    # sending response
+    f = open('file.csv', 'r')
+    response = HttpResponse(f.read(), content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="membres.xls"'
+    return response
 
 
 @api_view(['GET'])
@@ -178,5 +204,35 @@ def members_stats(request):
     res = Membre.objects.filter(entraineur=False).annotate(
         total=Coalesce(Sum('reservations__duration', filter=myfilter), 0),
         match=Coalesce(Sum('reservations__duration', filter=myfilter2), 0),
-        entrainement=Coalesce(Sum('reservations__duration', filter=myfilter3), 0), ).order_by('-total').values("nom", "match", "entrainement", "total")
+        entrainement=Coalesce(Sum('reservations__duration', filter=myfilter3), 0), ).order_by('-total').values("nom",
+                                                                                                               "match",
+                                                                                                               "entrainement",
+                                                                                                               "total")
     return Response(res)
+
+
+@api_view(['GET'])
+def terrain_stats_hour(request):
+    now = timezone.now()
+    res1 = Terrain.objects.filter(reservations__start_date__day=now.day,
+                                  reservations__start_date__month=now.month,
+                                  reservations__start_date__hour__range=[8, 14]).count()
+
+    res2 = Terrain.objects.filter(reservations__start_date__day=now.day,
+                                  reservations__start_date__month=now.month,
+                                  reservations__start_date__hour__range=[14, 19]).count()
+
+    res3 = Terrain.objects.filter(reservations__start_date__day=now.day,
+                                  reservations__start_date__month=now.month,
+                                  reservations__start_date__hour__range=[19, 24]).count()
+
+    membres = Membre.objects.filter(entraineur=False).count()
+    membres_paye = Membre.objects.filter(cotisation__paye=True).count()
+
+    return Response({
+        'h8_14': round(res1 * 100 / 54, 2),
+        'h14_19': round(res2 * 100 / 45, 2),
+        'h19_24': round(res3 * 100 / 45, 2),
+        'total_membres': membres,
+        'membres_paye': membres_paye
+    })

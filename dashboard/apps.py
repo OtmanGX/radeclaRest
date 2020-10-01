@@ -10,6 +10,9 @@ class DashboardConfig(AppConfig):
     name = 'dashboard'
 
 
+
+
+
 def get_terrain_month(_year, _year2, _month, _month2):
     if _year2:
         terrain_month = Terrain.objects.annotate(
@@ -81,6 +84,6 @@ def get_terrain_day(_year, _month, _day):
                              filter=Q(reservations__start_date__year=_year) &
                                     Q(reservations__start_date__month=_month) &
                                     Q(reservations__start_date__day=_day) &
-                                    Q(reservations__type_match='E')), 0))\
+                                    Q(reservations__type_match='E')), 0)) \
         .order_by('-heures').values('matricule', 'heures', 'heures2')
     return res
