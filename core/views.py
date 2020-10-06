@@ -52,10 +52,11 @@ class MembreFilter(django_filters.FilterSet):
 
     class Meta:
         model = Membre
-        fields = ['nom', 'entraineur', 'cotisation', 'cotisation__paye', 'no_cotisation']
+        fields = ['nom', 'entraineur', 'cotisation', 'cotisation__paye', 'no_cotisation', 'tournoi']
 
 
 class MembreViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     # permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Membre.objects.all()
     serializer_class = MembreSerializer

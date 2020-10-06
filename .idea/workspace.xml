@@ -3,33 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b9c2a002-18bd-43cb-a725-d29e6f8b0f5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0002_reservation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0003_membre.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0004_auto_20200826_1320.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0005_auto_20200826_1321.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0006_auto_20200826_1742.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0007_auto_20200908_0948.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0008_auto_20200910_1556.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0009_auto_20200911_1355.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0010_auto_20200914_1303.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0011_auto_20200914_1614.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0012_auto_20200914_1902.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0013_auto_20200915_1216.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0014_auto_20200918_1659.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0015_auto_20200922_1008.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0016_auto_20200923_1127.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0017_reservation_created_by.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0018_cotisation_created_at.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0019_membre_profession.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0020_reservation_type_match.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0021_auto_20200929_1508.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/radeclaRest/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/radeclaRest/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/radeclaRest/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +37,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/debug.log" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.externalResources" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="Django" type="PythonConfigurationType" factoryName="Python">
@@ -147,10 +127,11 @@
       <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state x="499" y="491" width="826" height="286" key="Performance.Activity.Monitor/66.28.1854.1052@66.28.1854.1052" timestamp="1600101172235" />
-    <state x="456" y="161" key="SettingsEditor" timestamp="1598693543593">
-      <screen x="0" y="0" width="1920" height="1052" />
+    <state x="506" y="189" key="SettingsEditor" timestamp="1601986897560">
+      <screen x="66" y="28" width="1854" height="1052" />
     </state>
     <state x="456" y="161" key="SettingsEditor/0.0.1920.1052@0.0.1920.1052" timestamp="1598693543593" />
+    <state x="506" y="189" key="SettingsEditor/66.28.1854.1052@66.28.1854.1052" timestamp="1601986897560" />
     <state x="603" y="149" width="772" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601464564709">
       <screen x="66" y="28" width="1854" height="1052" />
     </state>

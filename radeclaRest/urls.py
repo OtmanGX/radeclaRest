@@ -23,7 +23,7 @@ from rest_framework import routers
 from django.conf.urls.static import static
 from core.views import ReservationViewSet, MembreViewSet, CategorieViewSet, CotisationViewSet
 from dashboard.views import dashboard_view, terrain_stats, top_hours_stats, training_stats, total_cotisation, \
-    cotisation_a_payer, members_stats, export_membres_toexcel, terrain_stats_hour
+    cotisation_a_payer, members_stats, export_membres_toexcel, main_stats, terrain_stats_hours
 from core.task import SerialThread
 router = routers.DefaultRouter()
 router.register(r'reservation', ReservationViewSet, basename='Reservations')
@@ -48,8 +48,9 @@ urlpatterns = [
     path('dashboard/cotisationapayer', cotisation_a_payer, name='cotisationapayer'),
     path('dashboard/members_stats', members_stats, name='members_stats'),
     path('dashboard/excel_membres', export_membres_toexcel, name='excel_membres'),
-    path('dashboard/terrain_stats_hour', terrain_stats_hour, name='terrain_stats_hour'),
+    path('dashboard/main_stats', main_stats, name='main_stats'),
+    path('dashboard/terrain_stats_hours', terrain_stats_hours, name='terrain_stats_hour'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 # SerialThread().start()

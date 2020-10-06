@@ -8,8 +8,14 @@ https://docs.djangoproject.com/en/2.2/howto/deployment/wsgi/
 """
 
 import os
+import sys
+
 
 from django.core.wsgi import get_wsgi_application
+
+
+# adjust the Python version in the line below as needed
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'radeclaRest.settings')
 

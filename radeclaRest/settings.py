@@ -30,7 +30,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ]
 
-ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname(), '127.0.0.1', '192.168.1.96']
+ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname(), '127.0.0.1', '192.168.1.96', 'radecla.localhost']
 
 # LOGGING = {
 #     'version': 1,
@@ -146,9 +146,15 @@ DATABASES = {
     #     'PORT': 27017
     # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {
+                'read_default_file': '/etc/mysql/radecla.cnf',
+            }
+            },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
 }
 
 # Password validation
@@ -189,6 +195,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_ROOT = os.path.join(os.path.expanduser("~"), "facemedia")
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")

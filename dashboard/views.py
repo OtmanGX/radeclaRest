@@ -164,8 +164,53 @@ def training_stats(request):
 
     res = Membre.objects.filter(entraineur=True).annotate(
         total=Coalesce(Sum('reservations__duration', filter=myfilter), 0)).order_by('-total').values("nom", "total")
+    res2 = {}
+    if _membre is None:
+        for elem in res:
+            res2[elem['nom']] = Membre.objects.filter(myfilter, entraineur=False,
+                                                      reservations__players__nom=elem['nom']).annotate(
+                total=Coalesce(Sum('reservations__duration'),
+                               0)).order_by('-total').values("nom", "total")
 
-    return Response(res)
+    return Response({'training': res,
+                     'members': res2})
+
+
+@api_view(['GET'])
+def terrain_stats_hours(request):
+    _date = request.GET.get("date")
+    _year = request.GET.get("year")
+    _month = request.GET.get("month")
+    _year2 = request.GET.get("year2")
+    _month2 = request.GET.get("month2")
+    _week = request.GET.get("week")
+    _week2 = request.GET.get("week2")
+    _day = request.GET.get("day")
+    myfilter = Q(reservations__start_date__year=_year)
+    total_days = 365
+    if _date == 'month':
+        myfilter = myfilter & Q(reservations__start_date__month=_month)
+        total_days = 30
+    elif _date == 'week':
+        myfilter = myfilter & Q(reservations__start_date__week=_week)
+        total_days = 7
+    elif _date == 'day':
+        myfilter = myfilter & Q(reservations__start_date__month=_month, reservations__start_date__day=_day)
+        total_days = 1
+
+    res1 = Terrain.objects.filter(myfilter,
+                                  reservations__start_date__hour__range=[7, 13]).aggregate(total=Coalesce(Sum('reservations__duration'), 0)).get('total')
+
+    res2 = Terrain.objects.filter(myfilter,
+                                  reservations__start_date__hour__range=[13, 18]).aggregate(total=Coalesce(Sum('reservations__duration'), 0)).get('total')
+
+    res3 = Terrain.objects.filter(myfilter,
+                                  reservations__start_date__hour__range=[18, 23]).aggregate(total=Coalesce(Sum('reservations__duration'), 0)).get('total')
+
+    return Response({
+        'h8_14': round(res1 * 100 / (54 * total_days), 2),
+        'h14_19': round(res2 * 100 / (45 * total_days), 2),
+        'h19_24': round(res3 * 100 / (45 * total_days), 2)})
 
 
 @api_view(['GET'])
@@ -176,7 +221,7 @@ def total_cotisation(request):
 
 @api_view(['GET'])
 def cotisation_a_payer(request):
-    res = Cotisation.objects.filter(created_at__year=2020).aggregate(total=Sum('montant') - Sum('montant_paye'))
+    res = Cotisation.objects.filter(created_at__year=2020).aggregate(total=(Sum('montant') - Sum('montant_paye')))
     return Response(res)
 
 
@@ -212,7 +257,7 @@ def members_stats(request):
 
 
 @api_view(['GET'])
-def terrain_stats_hour(request):
+def main_stats(request):
     now = timezone.now()
     res1 = Terrain.objects.filter(reservations__start_date__day=now.day,
                                   reservations__start_date__month=now.month,
@@ -229,10 +274,21 @@ def terrain_stats_hour(request):
     membres = Membre.objects.filter(entraineur=False).count()
     membres_paye = Membre.objects.filter(cotisation__paye=True).count()
 
+    res = Reservation.objects.filter(start_date__year=now.year,
+                                     start_date__month=now.month,
+                                     start_date__day=now.day)
+
+    entrainement = res.filter(type_match='E')
+    match = res.filter(type_match='M')
+    tournoi = res.filter(type_match='T')
+
     return Response({
         'h8_14': round(res1 * 100 / 54, 2),
         'h14_19': round(res2 * 100 / 45, 2),
         'h19_24': round(res3 * 100 / 45, 2),
         'total_membres': membres,
-        'membres_paye': membres_paye
+        'membres_paye': membres_paye,
+        'entrainement': entrainement.count(),
+        'match': match.count(),
+        'tournoi': tournoi.count(),
     })
