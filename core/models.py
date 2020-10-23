@@ -6,7 +6,6 @@ import threading
 from core.task import SerialThread
 
 
-
 class Categorie(models.Model):
     nom = models.CharField(max_length=35, blank=False, unique=True)
 
@@ -54,6 +53,18 @@ class Membre(models.Model):
         return self.nom
 
 
+class Tournament(models.Model):
+    name = models.CharField(max_length=50, blank=False)
+    players = models.ManyToManyField(Membre, related_name='tournaments', blank=False)
+    created_date = models.DateTimeField(auto_now_add=True)
+    juges = models.TextField(blank=True)
+    date = models.DateTimeField(blank=True, default=timezone.now())
+    director = models.CharField(max_length=35, blank=True)
+    type_tournoi = models.CharField(max_length=25, default='TCMT')
+    # category = models.ForeignKey(Categorie, related_name='tournois', on_delete=models.CASCADE)
+    trainers = models.TextField(blank=True)
+
+
 class Terrain(models.Model):
     matricule = models.SmallIntegerField(blank=False)
 
@@ -63,17 +74,22 @@ class Reservation(models.Model):
         ('E', 'Entrainement'),
         ('M', 'Match'),
         ('T', 'Tournoi'),
-                )
-    terrain = models.ForeignKey(Terrain,related_name='reservations', on_delete=models.CASCADE)
+        ('D', 'Défi'),
+    )
+    terrain = models.ForeignKey(Terrain, related_name='reservations', on_delete=models.CASCADE)
     start_date = models.DateTimeField(blank=False)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     duration = models.PositiveSmallIntegerField(default=1)
     end_date = models.DateTimeField(blank=True, null=True)
     players = models.ManyToManyField(Membre, related_name='reservations', blank=True)
+    tournoi = models.ForeignKey(Tournament, related_name='matchs', on_delete=models.CASCADE, blank=True, null=True)
     eclairage = models.BooleanField(default=False, blank=False)
     eclairage_paye = models.BooleanField(default=False, blank=False)
     entrainement = models.BooleanField(default=False, blank=False)
     type_match = models.CharField(choices=CHOICES, default='M', max_length=25)
+
+    class Meta:
+        ordering = ['-start_date']
 
 
 def get_day_reservations():
@@ -115,5 +131,3 @@ def send_to_serial2(sender, instance, **kwargs):
     print('receiver delete called')
     # signal()
     threading.Thread(target=signal).start()
-
-
