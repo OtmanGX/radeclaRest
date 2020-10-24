@@ -61,7 +61,8 @@ class MembreFilter(django_filters.FilterSet):
 
     class Meta:
         model = Membre
-        fields = ['nom', 'entraineur', 'cotisation', 'cotisation__paye', 'no_cotisation', 'tournoi', 'age', 'age_range', 'sexe']
+        fields = ['nom', 'entraineur', 'cotisation', 'cotisation__paye',
+                  'no_cotisation', 'tournoi', 'age', 'age_range', 'sexe', 'school']
 
 
 class MembreViewSet(viewsets.ModelViewSet):

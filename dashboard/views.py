@@ -328,5 +328,5 @@ def main_stats(request):
         'defi': defi.count(),
         'lighting_count': lighting_count,
         'lighting_hour': lighting_hour,
-        'birth_day': birth_day[0].nom if birth_day.count() else False
+        'birth_day': ', '.join([i.nom for i in birth_day]) if birth_day.count() else False
     })

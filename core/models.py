@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 import threading
 from core.task import SerialThread
+from school.models import School
 
 
 class Categorie(models.Model):
@@ -43,6 +44,7 @@ class Membre(models.Model):
     entraineur = models.BooleanField(default=False)
     tournoi = models.BooleanField(default=False)
     licence_féderation = models.BooleanField(default=False)
+    school = models.ForeignKey(School, blank=True, null=True, on_delete=models.CASCADE)
     categorie = models.ManyToManyField(Categorie, related_name="membres", blank=True)
     cotisation = models.ForeignKey(Cotisation, related_name='membres', on_delete=models.CASCADE, blank=True, null=True)
 

@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9c2a002-18bd-43cb-a725-d29e6f8b0f5c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tournament/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/radeclaRest/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/radeclaRest/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/radeclaRest/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/school/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/school/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +212,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/core/models.py</url>
-          <line>38</line>
+          <line>39</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

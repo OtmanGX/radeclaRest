@@ -102,7 +102,7 @@ def some_view(request):
     #     ['2GB DDR2', '20GB Disc Space', 'Unlimited Email', 'Unlimited Email'],
     #     ['2GB DDR2', '', '', '']
     # ]
-    table = Table(data)
+    table = Table(data, 100, rowHeights=20)
     style = TableStyle([
         ('BACKGROUND', (0, 0), (len(data[1]), 0), colors.green),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
@@ -129,7 +129,7 @@ def some_view(request):
 
         ts = TableStyle(
             [('BACKGROUND', (0, i), (-1, i), bc),
-             ('FONTSIZE', (0, i), (-1, i), 5),]
+             ('FONTSIZE', (0, i), (-1, i), 7),]
         )
         table.setStyle(ts)
 
