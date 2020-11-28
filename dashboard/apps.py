@@ -10,9 +10,6 @@ class DashboardConfig(AppConfig):
     name = 'dashboard'
 
 
-
-
-
 def get_terrain_month(_year, _year2, _month, _month2):
     if _year2:
         terrain_month = Terrain.objects.annotate(

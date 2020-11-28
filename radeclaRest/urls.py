@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 # Local view apps
+from config.views import read_config_request
 from core import views as core_views
 from radeclaRest import settings
 from rest_framework_simplejwt import views as jwt_views
@@ -23,13 +24,18 @@ from rest_framework import routers
 from django.conf.urls.static import static
 from core.views import ReservationViewSet, MembreViewSet, CategorieViewSet, CotisationViewSet
 from dashboard.views import dashboard_view, terrain_stats, top_hours_stats, training_stats, total_cotisation, \
-    cotisation_a_payer, members_stats, export_membres_toexcel, main_stats, terrain_stats_hours
+    cotisation_a_payer, members_stats, export_membres_toexcel, main_stats, terrain_stats_hours, lighting_stats
 from core.task import SerialThread
+from school.views import SchoolViewSet
+from tournament.views import TournamentViewSet, some_view
+
 router = routers.DefaultRouter()
 router.register(r'reservation', ReservationViewSet, basename='Reservations')
 router.register(r'membre', MembreViewSet, basename='membre')
 router.register(r'categories', CategorieViewSet, basename='categories')
 router.register(r'cotisations', CotisationViewSet, basename='cotisations')
+router.register(r'tournois', TournamentViewSet, basename='tournois')
+router.register(r'schools', SchoolViewSet, basename='schools')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -50,6 +56,11 @@ urlpatterns = [
     path('dashboard/excel_membres', export_membres_toexcel, name='excel_membres'),
     path('dashboard/main_stats', main_stats, name='main_stats'),
     path('dashboard/terrain_stats_hours', terrain_stats_hours, name='terrain_stats_hour'),
+    path('dashboard/lighting_stats', lighting_stats, name='lighting_stats'),
+    # Config
+    path('config/configs', read_config_request, name='configs'),
+    #Download
+    path('download/tournoi', some_view, name='download'),
 
 ]
 

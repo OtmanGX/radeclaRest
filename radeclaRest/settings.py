@@ -30,7 +30,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ]
 
-ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname(), '127.0.0.1', '192.168.1.96', 'radecla.localhost']
+ALLOWED_HOSTS = ['192.168.1.144', 'localhost', gethostname(), '127.0.0.1', '192.168.1.96', 'radecla.localhost', 'radecla.myvnc.com', 'www.radecla.myvnc.com']
 
 # LOGGING = {
 #     'version': 1,
@@ -65,8 +65,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     # Local apps
+    'tournament',
     'core',
     'dashboard',
+    'school',
+    'config'
 ]
 
 # Rest Part

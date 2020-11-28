@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 from django.db.models.functions import Coalesce
 from django.db.models import Sum, Count, F, Q, Avg
 from django.db.models.functions import ExtractHour, ExtractDay
+
+from config.apps import read_config
 from core.models import Terrain, Membre, Reservation, Cotisation
 from dashboard.apps import get_terrain_month, get_terrain_week, get_terrain_day
 
@@ -177,6 +179,26 @@ def training_stats(request):
 
 
 @api_view(['GET'])
+def lighting_stats(request):
+    _date = request.GET.get("date")
+    _year = request.GET.get("year")
+    _month = request.GET.get("month")
+    _day = request.GET.get("day")
+
+    myfilter = Q(reservations__eclairage_paye=True, reservations__start_date__year=_year)
+    if _date == 'month':
+        myfilter = myfilter & Q(reservations__start_date__month=_month)
+    elif _date == 'day':
+        myfilter = myfilter & Q(reservations__start_date__day=_day, reservations__start_date__month=_month)
+
+    res = Terrain.objects.annotate(
+        heures=Coalesce(Sum('reservations__duration',
+                            filter=myfilter), 0))
+
+    return Response(res.values('matricule', 'heures'))
+
+
+@api_view(['GET'])
 def terrain_stats_hours(request):
     _date = request.GET.get("date")
     _year = request.GET.get("year")
@@ -199,13 +221,16 @@ def terrain_stats_hours(request):
         total_days = 1
 
     res1 = Terrain.objects.filter(myfilter,
-                                  reservations__start_date__hour__range=[7, 13]).aggregate(total=Coalesce(Sum('reservations__duration'), 0)).get('total')
+                                  reservations__start_date__hour__range=[7, 12]).aggregate(
+        total=Coalesce(Sum('reservations__duration'), 0)).get('total')
 
     res2 = Terrain.objects.filter(myfilter,
-                                  reservations__start_date__hour__range=[13, 18]).aggregate(total=Coalesce(Sum('reservations__duration'), 0)).get('total')
+                                  reservations__start_date__hour__range=[13, 17]).aggregate(
+        total=Coalesce(Sum('reservations__duration'), 0)).get('total')
 
     res3 = Terrain.objects.filter(myfilter,
-                                  reservations__start_date__hour__range=[18, 23]).aggregate(total=Coalesce(Sum('reservations__duration'), 0)).get('total')
+                                  reservations__start_date__hour__range=[18, 23]).aggregate(
+        total=Coalesce(Sum('reservations__duration'), 0)).get('total')
 
     return Response({
         'h8_14': round(res1 * 100 / (54 * total_days), 2),
@@ -261,11 +286,11 @@ def main_stats(request):
     now = timezone.now()
     res1 = Terrain.objects.filter(reservations__start_date__day=now.day,
                                   reservations__start_date__month=now.month,
-                                  reservations__start_date__hour__range=[7, 13]).count()
+                                  reservations__start_date__hour__range=[7, 12]).count()
 
     res2 = Terrain.objects.filter(reservations__start_date__day=now.day,
                                   reservations__start_date__month=now.month,
-                                  reservations__start_date__hour__range=[13, 18]).count()
+                                  reservations__start_date__hour__range=[13, 17]).count()
 
     res3 = Terrain.objects.filter(reservations__start_date__day=now.day,
                                   reservations__start_date__month=now.month,
@@ -278,9 +303,18 @@ def main_stats(request):
                                      start_date__month=now.month,
                                      start_date__day=now.day)
 
+    lighting_count = Reservation.objects.filter(start_date__day=now.day,
+                                                start_date__month=now.month,
+                                                start_date__year=now.year,
+                                                eclairage_paye=True).count()
+
+    config = read_config()
+    lighting_hour = config['rule4']['hour']
     entrainement = res.filter(type_match='E')
     match = res.filter(type_match='M')
     tournoi = res.filter(type_match='T')
+    defi = res.filter(type_match='D')
+    birth_day = Membre.objects.filter(date_naissance__month=now.month, date_naissance__day=now.day)
 
     return Response({
         'h8_14': round(res1 * 100 / 54, 2),
@@ -291,4 +325,8 @@ def main_stats(request):
         'entrainement': entrainement.count(),
         'match': match.count(),
         'tournoi': tournoi.count(),
+        'defi': defi.count(),
+        'lighting_count': lighting_count,
+        'lighting_hour': lighting_hour,
+        'birth_day': ', '.join([i.nom for i in birth_day]) if birth_day.count() else False
     })
